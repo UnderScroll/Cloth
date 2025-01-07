@@ -3,7 +3,7 @@
 #include "Spring.h"
 
 Spring::Spring(Node& a, Node& b)
-	:node_a(a), node_b(b), stiffness(8.9f), damping(0.99f)
+	:node_a(a), node_b(b), stiffness(2.5f), damping(0.995f)
 {
 	baseLength = Core::distance(node_a.pos, node_b.pos);
 }

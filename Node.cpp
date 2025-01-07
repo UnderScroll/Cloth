@@ -1,14 +1,14 @@
-#include "Node.h"
 #include "Core.h"
+#include "Node.h"
 #include <assert.h>
 
 Node::Node()
-	:pos(sf::Vector2f(0,0)), selected(false)
+	:pos(sf::Vector2f(0, 0)), selected(false)
 {
 	shape.setFillColor(sf::Color::Red);
 	shape.setPosition(pos);
 	shape.setRadius(4);
-	shape.setOrigin({shape.getRadius(),shape.getRadius() });
+	shape.setOrigin({ shape.getRadius(),shape.getRadius() });
 }
 
 Node::Node(sf::Vector2f position)
@@ -31,7 +31,7 @@ Node::Node(sf::Vector2f position, bool isStatic)
 	{
 		shape.setFillColor(sf::Color::Red);
 	}
-	
+
 	shape.setPosition(pos);
 	shape.setRadius(4);
 	shape.setOrigin({ shape.getRadius(),shape.getRadius() });
@@ -50,9 +50,9 @@ void Node::update(sf::RenderWindow& window)
 		{
 			sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 			sf::Vector2f force = sf::Vector2f(mousePos.x - pos.x, mousePos.y - pos.y);
-			applyForce(force);
+			applyForce(force * 0.1f);
 		}
-		applyForce(gravity);
+		applyForce(gravity * 0.3f);
 		Core::clamp(vel, -50.0f, 50.0f);
 		pos += sf::Vector2f(vel.x * (float)timestep, vel.y * (float)timestep);
 		shape.setPosition(pos);
